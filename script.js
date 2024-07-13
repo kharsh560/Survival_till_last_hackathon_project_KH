@@ -2,7 +2,7 @@ let provider
 let signer;
 let gameContract;
 
-const contractAddress = "0x8b9FEdBca1fbD498E1aF058821D65F49bbe2f44f";
+const contractAddress = "0x91aDd574134892e36A1cA14c098d61dE3a5c35D5";
 const contractABI = [{
         "inputs": [{
                 "internalType": "address",
