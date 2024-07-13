@@ -734,24 +734,51 @@ document.getElementById('donate').addEventListener('click', async() => {
         alert(`failed to donate. please try again`);
     }
 });
+
+document.getElementById('approve').addEventListener('click', async() => {
+    try {
+        const tx = await contract.approve_org();
+        tx.wait();
+    } catch (error) {
+        console.log(error);
+        alert(`failed to approve. please try again`);
+    }
+});
+
+document.getElementById('registerOrg').addEventListener('click', async() => {
+    console.log("clicked");
+    const orgAddress = document.getElementById('orgAdd').value;
+    const orgName = document.getElementById('orgName').value;
+    const orgDescription = document.getElementById('orgDescription').value;
+    const orgRequiredFunds = document.getElementById('orgRequiredFunds').value;
+    try {
+        const tx = await contract.register_org(orgAddress,orgName,orgDescription,orgRequiredFunds);
+        tx.wait();
+        console.log("success is registring");
+    }
+    catch(error){
+        console.log(error);
+        alert(`failed in registering , please try again`);
+    }
+});
 /*## Inspiration
-There are so many disasters happening and victims needs aid ASAP. So I created a website and hosted my game in which we have to survive and kill monsters, for each monsters we will get 1 token then we can donate these tokens to organization listed in the same website where organization will be host crowd funding. In this manner orgazisation will get capital and use it for good of victims affected by disasters like flood, earthquake.
-    
-    ## What it does
-User play the game, survive till he can, kill the monster Qand for every kill gets tokens and can donate it. For donation they will get reward. the donation will help the organisation to save and provide aid to the victims 
-    
-    ## How we built it
-I used solidity for smart contract and deployed on etherlink. use HTML+css +js for the front end interaction and Construct 2 for building of game.
-    
-    ## Challenges we ran into
-we faced a lot of challenges such as integration of game with front end, Construct 2 is very old software so we faced a lot of incompatibility issue. we faced a lot of issue in perfectly fetching and data form the smart contract.
-    
-    ## Accomplishments that we're proud of
-We are feeling proud the we build a complete full stack project with the integration of game on the web and running fine in this short span of time which aims to help the organisation and victims in the huge disasters, we are fully motivated to complete whole project with full optimization in upcoming time
-    
-    ## What we learned
-Connection of game with web and hosting with along side the integration of blockchain in it was one the coolest thing we learnt. we learnt how to embed a game in to web and send data from game to web
-    
-    ## What's next for Survival for Humanity
-    We are planning to elevate its level further more and encourage people to play out game, earn token and help the needy people, someone's fun will help a lot of victims
-*/
+        There are so many disasters happening and victims needs aid ASAP. So I created a website and hosted my game in which we have to survive and kill monsters, for each monsters we will get 1 token then we can donate these tokens to organization listed in the same website where organization will be host crowd funding. In this manner orgazisation will get capital and use it for good of victims affected by disasters like flood, earthquake.
+            
+            ## What it does
+        User play the game, survive till he can, kill the monster Qand for every kill gets tokens and can donate it. For donation they will get reward. the donation will help the organisation to save and provide aid to the victims 
+            
+            ## How we built it
+        I used solidity for smart contract and deployed on etherlink. use HTML+css +js for the front end interaction and Construct 2 for building of game.
+            
+            ## Challenges we ran into
+        we faced a lot of challenges such as integration of game with front end, Construct 2 is very old software so we faced a lot of incompatibility issue. we faced a lot of issue in perfectly fetching and data form the smart contract.
+            
+            ## Accomplishments that we're proud of
+        We are feeling proud the we build a complete full stack project with the integration of game on the web and running fine in this short span of time which aims to help the organisation and victims in the huge disasters, we are fully motivated to complete whole project with full optimization in upcoming time
+            
+            ## What we learned
+        Connection of game with web and hosting with along side the integration of blockchain in it was one the coolest thing we learnt. we learnt how to embed a game in to web and send data from game to web
+            
+            ## What's next for Survival for Humanity
+            We are planning to elevate its level further more and encourage people to play out game, earn token and help the needy people, someone's fun will help a lot of victims
+        */
