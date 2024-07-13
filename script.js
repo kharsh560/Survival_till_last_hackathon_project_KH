@@ -2,7 +2,7 @@ let provider
 let signer;
 let gameContract;
 
-const contractAddress = "0x36C9FC5A3c5Cb5139fe57bC02C8Dd94940A585FE";
+const contractAddress = "0xfe9a2c4d65864284e776A7Fa71CbaAbEdE9725D6";
 const contractABI = [{
         "inputs": [{
                 "internalType": "address",
@@ -602,7 +602,7 @@ const contractABI = [{
         "stateMutability": "view",
         "type": "function"
     }
-];
+]
 
 document.getElementById('connectWallet').onclick = async() => {
     provider = new ethers.providers.Web3Provider(window.ethereum);
