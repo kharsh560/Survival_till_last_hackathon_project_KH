@@ -2,7 +2,7 @@ let provider
 let signer;
 let gameContract;
 
-const contractAddress = "0xfe9a2c4d65864284e776A7Fa71CbaAbEdE9725D6";
+const contractAddress = "0x8b9FEdBca1fbD498E1aF058821D65F49bbe2f44f";
 const contractABI = [{
         "inputs": [{
                 "internalType": "address",
@@ -426,6 +426,11 @@ const contractABI = [{
                     "internalType": "address",
                     "name": "org_address",
                     "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "index",
+                    "type": "uint256"
                 }
             ],
             "internalType": "struct Game.Registered_org[]",
@@ -544,6 +549,11 @@ const contractABI = [{
                 "internalType": "address",
                 "name": "org_address",
                 "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "index",
+                "type": "uint256"
             }
         ],
         "stateMutability": "view",
@@ -575,6 +585,11 @@ const contractABI = [{
                 "internalType": "address",
                 "name": "org_address",
                 "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "index",
+                "type": "uint256"
             }
         ],
         "stateMutability": "view",
@@ -704,6 +719,21 @@ document.getElementById('getTokens').addEventListener('click', async() => {
 });
 
 
+document.getElementById('donate').addEventListener('click', async() => {
+    const orgAddress = document.getElementById("orgAddress").value;
+    const amount = document.getElementById("donationAmount").value;
+    if (!orgAddress || !amount) {
+        alert('Please enter organization address and amount to donate.');
+        return;
+    }
+    try {
+        const tx = await contract.donate_to_organisation(orgAddress, amount);
+        tx.wait();
+    } catch (error) {
+        console.log(error);
+        alert(`failed to donate. please try again`);
+    }
+});
 /*## Inspiration
 There are so many disasters happening and victims needs aid ASAP. So I created a website and hosted my game in which we have to survive and kill monsters, for each monsters we will get 1 token then we can donate these tokens to organization listed in the same website where organization will be host crowd funding. In this manner orgazisation will get capital and use it for good of victims affected by disasters like flood, earthquake.
     
