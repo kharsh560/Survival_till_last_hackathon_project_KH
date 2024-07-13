@@ -21,6 +21,7 @@
     <link rel="shortcut icon" sizes="256x256" href="icon-256.png" />
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+</script>
 
 
     <!-- All margins and padding must be zero for the canvas to fill the screen. -->
@@ -201,12 +202,16 @@
 
             <h2>Get Tokens</h2>
             <button id="getTokens">Get Tokens</button>
+            
             <h2>Register Organisation</h2>
             <input type="text" id="orgAdd" placeholder="org address">
             <input type="text" id="orgName" placeholder="org name">
             <input type="text" id="orgDescription" placeholder="org description">
             <input type="number" id="orgRequiredFunds" placeholder="funds">
-            <button id="registerOrg">Register Organisation</button>
+            <button id="registerOrg" onclick="registerOrg()">Register Organisation</button>
+
+            <h2>Approve Organisation</h2>
+            <button id="approve">Approve (only for owner)</button>
         </div>
     </div>
 
