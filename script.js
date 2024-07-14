@@ -787,7 +787,8 @@ function renderCards(cardDataArray) {
 document.getElementById('getTokens').addEventListener('click', async() => {
     kills = c2_callFunction("getKills");
     try {
-        await contract.getTokens(kills);
+        const tx = await contract.getTokens(kills);
+		tx.wait();
         alert(`${kills} Tokens received successfully!`);
         console.log(`Tokens received successfully`);
         fetchAndRenderOrganizations();
