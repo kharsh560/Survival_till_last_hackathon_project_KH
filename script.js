@@ -813,6 +813,7 @@ document.getElementById('donate').addEventListener('click', async() => {
         console.log(`Donated ${amount} tokens to ${orgAddress}`);
         alert(`Donated ${amount} tokens to ${orgAddress}`);
         await fetchAndRenderOrganizations();
+		await check_balance();
     } catch (error) {
         console.log(error);
         alert(`failed to donate. please try again`);
