@@ -2,7 +2,7 @@ let provider
 let signer;
 let gameContract;
 
-const contractAddress = "0x9261bb0a756066dDc8cBf12171450554F6Fe50aE";
+const contractAddress = "0x55a4eDd8A2c051079b426E9fbdEe285368824a89";
 const contractABI = [
 	{
 		"inputs": [
@@ -237,6 +237,19 @@ const contractABI = [
 			{
 				"indexed": true,
 				"internalType": "address",
+				"name": "orgAddress",
+				"type": "address"
+			}
+		],
+		"name": "OrgRemoved",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
 				"name": "previousOwner",
 				"type": "address"
 			},
@@ -274,6 +287,19 @@ const contractABI = [
 			}
 		],
 		"name": "register_org",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_org_address",
+				"type": "address"
+			}
+		],
+		"name": "removeOrg",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
