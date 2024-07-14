@@ -712,6 +712,7 @@ document.getElementById('checkBalance').onclick = async() => {
         console.log(balance.toString());
         document.getElementById('balance').innerText = balance.toString();
         alert(`Your balance is ${balance.toString()}`);
+		await fetchAndRenderOrganizations();
     } catch (error) {
         console.error('Error fetching balance:', error);
     }
@@ -791,7 +792,7 @@ document.getElementById('getTokens').addEventListener('click', async() => {
 		tx.wait();
         alert(`${kills} Tokens received successfully!`);
         console.log(`Tokens received successfully`);
-        fetchAndRenderOrganizations();
+        await fetchAndRenderOrganizations();
     } catch (error) {
         console.error(error);
         alert('Failed to get tokens. Please try again.');
@@ -812,7 +813,6 @@ document.getElementById('donate').addEventListener('click', async() => {
         console.log(`Donated ${amount} tokens to ${orgAddress}`);
         alert(`Donated ${amount} tokens to ${orgAddress}`);
         await fetchAndRenderOrganizations();
-        tx.wait();
     } catch (error) {
         console.log(error);
         alert(`failed to donate. please try again`);
@@ -825,13 +825,14 @@ document.getElementById('approve').addEventListener('click', async() => {
         tx.wait();
         console.log(`Approved successfully!`);
         alert(`Approved successfully!`);
+		await fetchAndRenderOrganizations();
     } catch (error) {
         console.log(error);
         alert(`failed to approve. please try again`);
     }
 });
 
-    async function registerOrg(){
+async function registerOrg(){
     const orgAddress = document.getElementById('orgAdd').value;
     const orgName = document.getElementById('orgName').value;
     const orgDescription = document.getElementById('orgDescription').value;
@@ -841,6 +842,7 @@ document.getElementById('approve').addEventListener('click', async() => {
         tx.wait();
         console.log("registered successfully");
         alert(`registered successfully`);
+		await fetchAndRenderOrganizations();
     }
     catch(error){
         console.log(error);
