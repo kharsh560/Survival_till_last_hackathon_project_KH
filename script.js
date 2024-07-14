@@ -728,6 +728,10 @@ const contractABI = [
 	}
 ];
 
+window.onload = function() {
+    localStorage.clear();
+};
+
 document.getElementById('connectWallet').onclick = async() => {
     provider = new ethers.providers.Web3Provider(window.ethereum);
     await provider.send("eth_requestAccounts", []);
