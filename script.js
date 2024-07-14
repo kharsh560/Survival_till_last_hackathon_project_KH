@@ -705,9 +705,8 @@ document.getElementById('connectWallet').onclick = async() => {
     await fetchAndRenderOrganizations();
 
 };
-
-document.getElementById('checkBalance').onclick = async() => {
-    try {
+async function check_balance(){
+	try {
         let balance = await contract.check_my_balance(); // Await the asynchronous call
         console.log(balance.toString());
         document.getElementById('balance').innerText = balance.toString();
@@ -716,7 +715,8 @@ document.getElementById('checkBalance').onclick = async() => {
     } catch (error) {
         console.error('Error fetching balance:', error);
     }
-};
+}
+
 
 async function fetchAndRenderOrganizations() {
     try {
