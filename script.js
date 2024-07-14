@@ -706,8 +706,6 @@ document.getElementById('connectWallet').onclick = async() => {
 
 };
 
-await fetchAndRenderOrganizations();
-
 async function check_balance(){
 	try {
         let balance = await contract.check_my_balance(); // Await the asynchronous call
