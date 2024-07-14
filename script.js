@@ -2,7 +2,7 @@ let provider
 let signer;
 let gameContract;
 
-const contractAddress = "0x77B808eC6fD76418a34c87cc6Ea656E23B9B7Dd3";
+const contractAddress = "0x9261bb0a756066dDc8cBf12171450554F6Fe50aE";
 const contractABI = [
 	{
 		"inputs": [
@@ -31,6 +31,13 @@ const contractABI = [
 	{
 		"inputs": [],
 		"name": "approve_org",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "approve_org_public",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -483,7 +490,7 @@ const contractABI = [
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct Game.Registered_org[]",
+				"internalType": "struct Game2.Registered_org[]",
 				"name": "",
 				"type": "tuple[]"
 			}
@@ -824,6 +831,19 @@ document.getElementById('donate').addEventListener('click', async() => {
 document.getElementById('approve').addEventListener('click', async() => {
     try {
         const tx = await contract.approve_org();
+        tx.wait();
+        console.log(`Approved successfully!`);
+        alert(`Approved successfully!`);
+		await fetchAndRenderOrganizations();
+    } catch (error) {
+        console.log(error);
+        alert(`failed to approve. please try again`);
+    }
+});
+
+document.getElementById('approve_public_test').addEventListener('click', async() => {
+    try {
+        const tx = await contract.approve_org_public();
         tx.wait();
         console.log(`Approved successfully!`);
         alert(`Approved successfully!`);
