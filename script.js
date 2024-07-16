@@ -2,7 +2,7 @@ let provider
 let signer;
 let gameContract;
 
-const contractAddress = "0x593552366229BDf5251a96a27dE904D047c72fDE";
+const contractAddress = "0x817615606cf10170269541AB7854aaDd132CF1D1";
 const contractABI = [
 	{
 		"inputs": [
@@ -693,8 +693,7 @@ const contractABI = [
 		"stateMutability": "view",
 		"type": "function"
 	}
-]
-
+];
 window.onload = function() {
     localStorage.clear();
 };
