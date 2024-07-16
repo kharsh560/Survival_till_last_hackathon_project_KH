@@ -2,7 +2,7 @@ let provider
 let signer;
 let gameContract;
 
-const contractAddress = "0x817615606cf10170269541AB7854aaDd132CF1D1";
+const contractAddress = "0xF7bB7Edcb520C9ed005afa9Bbb6A6C416C80cBDD";
 const contractABI = [
 	{
 		"inputs": [
@@ -31,6 +31,13 @@ const contractABI = [
 	{
 		"inputs": [],
 		"name": "approve_org",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "approve_org_public",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -230,6 +237,19 @@ const contractABI = [
 			{
 				"indexed": true,
 				"internalType": "address",
+				"name": "orgAddress",
+				"type": "address"
+			}
+		],
+		"name": "OrgRemoved",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
 				"name": "previousOwner",
 				"type": "address"
 			},
@@ -267,6 +287,19 @@ const contractABI = [
 			}
 		],
 		"name": "register_org",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_org_address",
+				"type": "address"
+			}
+		],
+		"name": "removeOrg",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -483,7 +516,7 @@ const contractABI = [
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct Game.Registered_org[]",
+				"internalType": "struct Game2.Registered_org[]",
 				"name": "",
 				"type": "tuple[]"
 			}
@@ -693,7 +726,7 @@ const contractABI = [
 		"stateMutability": "view",
 		"type": "function"
 	}
-];
+]
 window.onload = function() {
     localStorage.clear();
 };
