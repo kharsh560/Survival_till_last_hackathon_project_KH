@@ -176,43 +176,7 @@
         });
     </script>
 
-    <div id="mainContainerForTokenCards">
-
-    </div>
-    <div id="accountsContainerWrapper">
-        <div class="accountsContainer">
-            <h1>Ghost Coins DApp</h1>
-
-            <div id="account"></div>
-
-            <h2>Check Balance</h2>
-            <button id="checkBalance" onclick="check_balance()">Check My Balance</button>
-            <div id="balance" style="color:#000"></div>
-
-            <h2>Donate to Organisation</h2>
-            <input type="text" id="orgAddress" placeholder="Organisation Address">
-            <input type="number" id="donationAmount" placeholder="Amount">
-            <button id="donate">Donate</button>
-
-            <h2>Get Tokens</h2>
-            <button id="getTokens">Get Tokens</button>
-            
-            <h2>Register Organisation</h2>
-            <input type="text" id="orgAdd" placeholder="org address">
-            <input type="text" id="orgName" placeholder="org name">
-            <input type="text" id="orgDescription" placeholder="org description">
-            <input type="number" id="orgRequiredFunds" placeholder="funds">
-            <button id="registerOrg" onclick="registerOrg()">Register Organisation</button>
-
-            <h2>Approve Organisation</h2>
-            <button id="approve">Approve (only for owner)</button>
-
-            <h2>Approve Organisation Public</h2>
-            <button id="approve_public_test">Approve (public , only for testing purpose)</button>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+    
 	<!-- The canvas must be inside a div called c2canvasdiv -->
 	<div id="c2canvasdiv">
 	
@@ -289,5 +253,42 @@
 			}
 		};
     </script>
+    <div id="mainContainerForTokenCards">
+
+    </div>
+    <div id="accountsContainerWrapper">
+        <div class="accountsContainer">
+            <h1>Ghost Coins DApp</h1>
+
+            <div id="account"></div>
+
+            <h2>Check Balance</h2>
+            <button id="checkBalance" onclick="check_balance()">Check My Balance</button>
+            <div id="balance" style="color:#000"></div>
+
+            <h2>Donate to Organisation</h2>
+            <input type="text" id="orgAddress" placeholder="Organisation Address">
+            <input type="number" id="donationAmount" placeholder="Amount">
+            <button id="donate">Donate</button>
+
+            <h2>Get Tokens</h2>
+            <button id="getTokens">Get Tokens</button>
+            
+            <h2>Register Organisation</h2>
+            <input type="text" id="orgAdd" placeholder="org address">
+            <input type="text" id="orgName" placeholder="org name">
+            <input type="text" id="orgDescription" placeholder="org description">
+            <input type="number" id="orgRequiredFunds" placeholder="funds">
+            <button id="registerOrg" onclick="registerOrg()">Register Organisation</button>
+
+            <h2>Approve Organisation</h2>
+            <button id="approve">Approve (only for owner)</button>
+
+            <h2>Approve Organisation Public</h2>
+            <button id="approve_public_test">Approve (public , only for testing purpose)</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body> 
 </html> 
