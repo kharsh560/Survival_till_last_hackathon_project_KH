@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-contract Game is ERC20,Ownable,ReentrancyGuard{
+contract Game2 is ERC20,Ownable,ReentrancyGuard{
     mapping (address=>bool) public is_org_registered;
     mapping (address=>bool) public is_org_applied;
 
@@ -55,8 +55,22 @@ contract Game is ERC20,Ownable,ReentrancyGuard{
     }
 
     function approve_org() public onlyOwner {
-        uint index = registered_org_arr.length;
+        require(org_queue.length>0,"no org remaining");
             for (uint i = 0; i < org_queue.length; i++) {
+                uint index = registered_org_arr.length;
+                Pending_org memory pending = org_queue[i];
+                registered_orgs[pending.org_address] = Registered_org(pending.name, pending.description, pending.funds_remaining,pending.org_address,index);
+                registered_org_arr.push(Registered_org(pending.name, pending.description, pending.funds_remaining,pending.org_address,index));
+                is_org_registered[pending.org_address] = true;
+                is_org_applied[pending.org_address] = false;
+            }
+        delete org_queue;
+    }
+
+    function approve_org_public() public onlyOwner {
+        require(org_queue.length>0,"no org remaining");
+            for (uint i = 0; i < org_queue.length; i++) {
+                uint index = registered_org_arr.length;
                 Pending_org memory pending = org_queue[i];
                 registered_orgs[pending.org_address] = Registered_org(pending.name, pending.description, pending.funds_remaining,pending.org_address,index);
                 registered_org_arr.push(Registered_org(pending.name, pending.description, pending.funds_remaining,pending.org_address,index));
@@ -111,5 +125,32 @@ contract Game is ERC20,Ownable,ReentrancyGuard{
                 delete pending_user_tokens[i];
             }
         }
+    }
+
+    event OrgRemoved(address indexed orgAddress);
+
+    function removeOrg(address _org_address) public onlyOwner {
+        // Check if the organization exists
+        require(registered_orgs[_org_address].index != 0, "Organization does not exist");
+
+        // Remove the organization from the mapping
+        delete registered_orgs[_org_address];
+
+        // Find and remove the organization from the array
+        for (uint i = 0; i < registered_org_arr.length; i++) {
+            if (registered_org_arr[i].org_address == _org_address) {
+                // Shift elements to fill the gap
+                for (uint j = i; j < registered_org_arr.length - 1; j++) {
+                    registered_org_arr[j] = registered_org_arr[j + 1];
+                }
+                // Decrease the length of the array by one
+                registered_org_arr.pop();
+                break;
+            }
+        }
+        is_org_registered[_org_address]=false;
+
+        // Emit an event to log the removal
+        emit OrgRemoved(_org_address);
     }
 }
