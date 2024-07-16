@@ -882,7 +882,7 @@ document.getElementById('approve').addEventListener('click', async() => {
 document.getElementById('approve_public_test').addEventListener('click', async() => {
     try {
         const tx = await contract.approve_org_public();
-        tx.wait();
+        await tx.wait();
         console.log(`Approved successfully!`);
         alert(`Approved successfully!`);
 		await fetchAndRenderOrganizations();
