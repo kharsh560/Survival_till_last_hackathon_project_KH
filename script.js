@@ -2,7 +2,7 @@ let provider
 let signer;
 let gameContract;
 
-const contractAddress = "0x237abf9943B60Aa071951330BD911bC83123E6Db";
+const contractAddress = "0x593552366229BDf5251a96a27dE904D047c72fDE";
 const contractABI = [
 	{
 		"inputs": [
@@ -31,13 +31,6 @@ const contractABI = [
 	{
 		"inputs": [],
 		"name": "approve_org",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "approve_org_public",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -237,19 +230,6 @@ const contractABI = [
 			{
 				"indexed": true,
 				"internalType": "address",
-				"name": "orgAddress",
-				"type": "address"
-			}
-		],
-		"name": "OrgRemoved",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
 				"name": "previousOwner",
 				"type": "address"
 			},
@@ -287,19 +267,6 @@ const contractABI = [
 			}
 		],
 		"name": "register_org",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_org_address",
-				"type": "address"
-			}
-		],
-		"name": "removeOrg",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -516,7 +483,7 @@ const contractABI = [
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct Game2.Registered_org[]",
+				"internalType": "struct Game.Registered_org[]",
 				"name": "",
 				"type": "tuple[]"
 			}
@@ -726,7 +693,7 @@ const contractABI = [
 		"stateMutability": "view",
 		"type": "function"
 	}
-];
+]
 
 window.onload = function() {
     localStorage.clear();
@@ -759,12 +726,14 @@ async function check_balance(){
 async function fetchAndRenderOrganizations() {
     try {
         const organizations = await contract.get_registered_org();
+		console.log(organizations);
         const orgData = organizations.map(org => ({
             name: org.name,
             description: org.description,
             funds_remaining: org.funds_remaining.toString(),
             org_address: org.org_address
         }));
+		console.log(orgData)
         renderCards(orgData);
     } catch (error) {
         console.error(error);
@@ -824,17 +793,23 @@ function renderCards(cardDataArray) {
 
 
 document.getElementById('getTokens').addEventListener('click', async() => {
+	isGameOver = c2_callFunction("isGameOver");
+	if(isGameOver==1){
     kills = c2_callFunction("getKills");
     try {
         const tx = await contract.getTokens(kills);
-		tx.wait();
+		await tx.wait();
         alert(`${kills} Tokens received successfully!`);
         console.log(`Tokens received successfully`);
         await fetchAndRenderOrganizations();
     } catch (error) {
         console.error(error);
         alert('Failed to get tokens. Please try again.');
-    }
+    }}
+	else{
+		alert('Game is not over yet');
+	
+	}
 });
 
 
@@ -847,7 +822,7 @@ document.getElementById('donate').addEventListener('click', async() => {
     }
     try {
         const tx = await contract.donate_to_organisation(orgAddress, amount);
-        tx.wait();
+        await tx.wait();
         console.log(`Donated ${amount} tokens to ${orgAddress}`);
         alert(`Donated ${amount} tokens to ${orgAddress}`);
         await fetchAndRenderOrganizations();
@@ -861,7 +836,7 @@ document.getElementById('donate').addEventListener('click', async() => {
 document.getElementById('approve').addEventListener('click', async() => {
     try {
         const tx = await contract.approve_org();
-        tx.wait();
+        await tx.wait();
         console.log(`Approved successfully!`);
         alert(`Approved successfully!`);
 		await fetchAndRenderOrganizations();
@@ -870,6 +845,7 @@ document.getElementById('approve').addEventListener('click', async() => {
         alert(`failed to approve. please try again`);
     }
 });
+
 
 document.getElementById('approve_public_test').addEventListener('click', async() => {
     try {
@@ -891,7 +867,7 @@ async function registerOrg(){
     const orgRequiredFunds = document.getElementById('orgRequiredFunds').value;
     try {
         const tx = await contract.register_org(orgAddress,orgName,orgDescription,orgRequiredFunds);
-        tx.wait();
+        await tx.wait();
         console.log("registered successfully");
         alert(`registered successfully`);
 		await fetchAndRenderOrganizations();
