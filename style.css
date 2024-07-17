@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
     background-color: #f4f4f4;
     /* padding: 20px; */
     margin: 0;
@@ -8,16 +8,16 @@ body {
 .navBar {
     display: flex;
     padding: 15px;
+    width: 90%;
     height: fit-content;
     justify-content: space-between;
-    background-color: gray;
 }
 
 .navBar>h4 {
     height: fit-content;
     margin: 0;
     cursor: pointer;
-    background-color: coral;
+    background-color: maroon;
     border-radius: 8px;
     padding: 5px;
 }
@@ -26,23 +26,93 @@ body {
     transform: scale(1.1);
 }
 
+/*  NOTE : Game code's CSS start ############################################################################################################################## */
+#gameCodeContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* text-align: center; */
+    gap: 10px;
+    background-image: url("paranormalImage.avif");
+    background-size: 55%;
+    padding-bottom: 20px;
+}
+/* #gameCodeContainerNote {
+font-family: "Eater", serif;
+    font-weight: 400;
+    font-style: normal;
+}  */
+/* .kalnia-glaze-gameCodeContainerNote {
+    font-family: "Kalnia Glaze", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+} */
+/* Don't know why is the above code not working! */
+#c2canvasdiv {
+    margin-left: 0 !important;
+    width: auto !important;
+}
+#c2canvas {
+    outline: rgba(255, 87, 51, 0.8 ) solid 4px !important;
+}
+#controlInstructions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 87, 51, 0.8);
+    font-family: "Creepster", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: x-large;
+    padding: 10px;
+    border-radius: 10%;
+}
+
+/* #c2canvas {
+    border: red;
+    border-width: 15px;
+    border: solid;
+} */
+
 #mainContainerForTokenCards {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
     margin: 5px;
     padding: 10px;
     /* display: flex;
     justify-content: space-between; */
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    gap: 20px;
     justify-items: center;
 }
 
 .cardForTokens {
     display: flex;
-    background-color: rgba(255, 0, 0, 0.5);
+    background-color: rgba(255, 0, 0, 0.7);
+    justify-content: center;
     padding: 20px;
     width: fit-content;
     border-radius: 10px;
+    width: 20vw;
+    max-width: 30vw;
+    min-height: 10vh;
+    cursor: pointer;
+}
+
+.cardForTokens :hover {
+    transform: scale(1.1);
+}
+
+.leftPartOfCardForTokens {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-family: fantasy !important;
+    font-weight: bolder;
 }
 
 .leftPartOfCardForTokens>h4 {
@@ -56,7 +126,8 @@ body {
 .rightPartOfCardForTokens {
     display: flex;
     /* justify-content: flex-end; */
-    align-items: flex-end;
+    align-items: flex-start;
+    padding-left: 20px;
 }
 
 
@@ -66,25 +137,34 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
+    background-image: url("accountsCenterBgScarypic.jpg");
+    background-size: 60%;
+    padding: 10px;
 }
 
 .accountsContainer {
-    background-color: #fff;
+    background-image: url("zombiesWalkingPic.jpg");
+    background-size: contain;
     width: 400px;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
 
 .accountsContainer h1 {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
+    font-family: "Creepster", system-ui;
+        font-weight: 400;
+        font-style: normal;
+        font-size: xx-large;
 }
 
 .accountsContainer h2 {
     font-size: 1.2em;
-    color: #555;
+    /* color: #555; */
+    color: red;
     margin-top: 20px;
     margin-bottom: 10px;
 }
@@ -94,7 +174,8 @@ body {
     width: 100%;
     padding: 10px;
     margin-top: 10px;
-    background-color: #4CAF50;
+    /* background-color: #4CAF50; */
+    background-color: firebrick;
     color: white;
     border: none;
     border-radius: 4px;
